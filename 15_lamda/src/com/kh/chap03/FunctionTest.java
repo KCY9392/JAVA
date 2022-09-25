@@ -1,0 +1,86 @@
+package com.kh.chap03;
+
+import java.util.ArrayList;
+import java.util.function.*;
+
+import com.kh.lamda.Product;
+
+public class FunctionTest {
+
+	/*
+	 * Function 인터페이스 특징
+	 * 1. 타입 변환
+	 * ex) 컬렉션에서 특정값만 뽑거나, 연산할때 사용된다(js map과 유사)
+	 */
+	
+	public static void main(String[] args) {
+		Product p = new Product("걸럭시 z플립4",1350000,1000);
+		
+		// 1) Function<T, U> : T형을 인자로 받아서 U값을 반환시켜준다.
+		// Product객체에서 가격만 빼기 
+		Function<Product , Integer> function = (product) -> {
+			return product.getPrice();
+		};
+		
+		int price = function.apply(p);
+		System.out.println(price); // 1350000출력됨
+		
+		
+		
+		// 2) BiFunction<T, U, R> : T,U 두개를 인자로 받고, R을 반환시켜준다.
+		// Bi 가 binary 2개 라는 뜻
+		BiFunction<Integer, Integer, Double> biFunction = (num1 , num2) -> {
+			return (double)num1 * num2;
+		}; // ;안붙이면 에러난다.
+		
+		double totalprice = biFunction.apply(p.getPrice(), p.getStock());
+		System.out.println("z플립4 100대의 가격은 "+totalprice+"입니다.");
+		// 1.35E9 -> 숫자가 커서 지수함수로 표현됨.
+		
+		
+		
+		// 그외
+		// 3) xxxFunction<T> : XXX를 인자로 받아서 T형을 반환한다.
+		// 4) xxxtoYYYFunction : XXX를 인자로 받아서 YYY를 반환한다.
+		// 5) toXXXFunction<T> : T를 받아서 XXX를 반환한다.
+		// 6) toXXXBiFunction<T,U> : T,U를 인자로 받아서 XXX를 반환한다.
+		
+		
+		// 객체배열을 통한 람다식 실습.
+		// 1) 핸드폰 객체 배열 리스트를 만들기
+		ArrayList<Product> pList = new ArrayList<Product>();
+		pList.add(new Product("갤럭시 z플립4", 1350000,55));
+		pList.add(new Product("갤럭시 z플립3", 1000000,25));
+		pList.add(new Product("갤럭시 z플립2", 1800000,80));
+		pList.add(new Product("갤럭시 z플립1", 1400000,15));
+		pList.add(new Product("아이폰 14", 2000000,0));
+		
+		// 2) 해당상품을 모두 팔게되면 남는 이윤 계산할 수 있는 람다식 생성(Product의 가격 * Product의 재고)
+		// Product를 인수로 받아서 연산을 하고, 그 결과를 int형으로 반환할 수 있는 람다식 함수가 필요하다.
+		ToIntFunction<Product> toIntFunction = product -> {
+			return product.getPrice() * product.getStock();
+		};
+		printProduct(pList, toIntFunction);
+	}
+	
+	
+	// 3) 생성한 람다식 함수를 활용한 객체배열 관리용 일반메소드 생성.
+	public static void printProduct(ArrayList<Product> pList, ToIntFunction<Product> toIntFunction) {
+		// 객체리스트와 람다식인 인터페이스를 매개변수로 넘겨줌.
+		for( Product p : pList ) {
+			System.out.println(p.getpName()+"의 현재 가격은 "+p.getPrice()+"원 이고,"
+					+ "모두 판매했을 때 이윤은 "+toIntFunction.applyAsInt(p)+"원 입니다.");
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}

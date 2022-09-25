@@ -1,0 +1,28 @@
+package com.kh.chap03;
+
+public class FunctionTest {
+
+	/*
+	 * Function 인터페이스 특징
+	 * 1. 타입 변환
+	 * ex) 컬렉션에서 특정값만 뽑거나, 연산할때 사용된다(js map과 유사)
+	 */
+	
+	public static void main(String[] args) {
+		Product p = new Product("걸럭시 z플립4",1350000,1000);
+		
+		// 1) Function<T, U> : T형을 인자로 받아서 U값을 반환시켜준다.
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}

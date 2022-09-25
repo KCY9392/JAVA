@@ -1,0 +1,14 @@
+package com.kh.lamda;
+
+public class Product {
+	
+	private String pName;
+	private int price;
+	private int stock;
+	
+	public Product() {
+		
+	}
+	
+	
+}

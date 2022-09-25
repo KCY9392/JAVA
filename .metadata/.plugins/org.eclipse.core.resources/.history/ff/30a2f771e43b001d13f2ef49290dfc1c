@@ -1,0 +1,22 @@
+package com.kh.chap01;
+
+import java.util.function.*;
+
+public class ConsumerTest {
+
+	/*
+	 * Consumer 인터페이스 특징
+	 * 1. 주로 소비자 역할을 띈 함수를 작성할때 사용
+	 * 2. 매개변수가 있고, 리턴값은 없음.
+	 * 3. 내부적으로 accept()메소드 한개만 구현되지 않은 형태로 존재
+	 */
+	
+	//컨슈머인테페이스 소개
+	// 1) Consumer<T> : 인자값 1개
+	static Consumer<String> c1 = (str) -> System.out.println(str+"구매하였습니다.");
+	
+	public static void main(String[] args) {
+		c1.accept("갤럭시 z플립4");
+	}
+
+}

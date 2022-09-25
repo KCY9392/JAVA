@@ -1,0 +1,48 @@
+package com.kh.chap03;
+
+import java.util.function.*;
+
+import com.kh.lamda.Product;
+
+public class FunctionTest {
+
+	/*
+	 * Function 인터페이스 특징
+	 * 1. 타입 변환
+	 * ex) 컬렉션에서 특정값만 뽑거나, 연산할때 사용된다(js map과 유사)
+	 */
+	
+	public static void main(String[] args) {
+		Product p = new Product("걸럭시 z플립4",1350000,1000);
+		
+		// 1) Function<T, U> : T형을 인자로 받아서 U값을 반환시켜준다.
+		// Product객체에서 가격만 빼기 
+		Function<Product , Integer> function = (product) -> {
+			return product.getPrice();
+		};
+		
+		int price = function.apply(p);
+		System.out.println(price); // 1350000출력됨
+		
+		
+		
+		// 2) BiFunction<T, U, R> : T,U 두개를 인자로 받고, R을 반환시켜준다.
+		// Bi 가 binary 2개 라는 뜻
+		BiFunction<Integer, Integer, Double> biFunction = (num1 , num2) -> {
+			return (double)num1 * num2;
+		}; // ;안붙이면 에러난다.
+		
+		double totalprice = biFunction.apply(p.getPrice(), p.getStock());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}

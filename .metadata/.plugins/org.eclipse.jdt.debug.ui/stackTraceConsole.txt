@@ -1,0 +1,3 @@
+	User u2 = new User("±Ë√§øµ","kcy","±Ë√§øµ");
+		
+		System.out.println(u2.info());
